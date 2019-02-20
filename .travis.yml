@@ -1,0 +1,9 @@
+sudo: required #as it need for docker
+services:
+  - docker
+
+before_install:
+  - docker build -t vitkoczi/docker-react -f Dockerfile.dev .
+  
+script: # if each coming back with <>0 travis expect it failed
+  - docker run vitkoczi/docker-react npm run test -- --coverage
